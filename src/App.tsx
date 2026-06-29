@@ -8,6 +8,7 @@ import { useAuthStore } from "@/features/auth/model/store"
 import { LoginForm } from "@/features/auth/ui/LoginForm"
 import { RegisterForm } from "@/features/auth/ui/RegisterForm"
 import { ProtectedRoute, PublicRoute } from "@/features/auth/ui/guards"
+import { Dashboard } from "@/pages/dashboard/Dashboard"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,15 +73,11 @@ function App() {
               }
             />
 
-            {/* Protected Routes placeholder */}
             <Route
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Dashboard</h1>
-                    <p className="text-slate-400">Loading requests...</p>
-                  </div>
+                  <Dashboard />
                 </ProtectedRoute>
               }
             />
