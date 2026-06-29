@@ -7,8 +7,9 @@ import { Toaster } from "sonner"
 import { useAuthStore } from "@/features/auth/model/store"
 import { LoginForm } from "@/features/auth/ui/LoginForm"
 import { RegisterForm } from "@/features/auth/ui/RegisterForm"
-import { ProtectedRoute, PublicRoute } from "@/features/auth/ui/guards"
+import { ProtectedRoute, PublicRoute, RoleProtectedRoute } from "@/features/auth/ui/guards"
 import { Dashboard } from "@/pages/dashboard/Dashboard"
+import { AdminPanel } from "@/pages/admin/AdminPanel"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -78,6 +79,17 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <RoleProtectedRoute allowedRoles={["admin"]}>
+                    <AdminPanel />
+                  </RoleProtectedRoute>
                 </ProtectedRoute>
               }
             />
